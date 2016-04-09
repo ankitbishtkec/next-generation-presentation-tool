@@ -1,0 +1,127 @@
+@charset "UTF-8";
+
+/** 
+ * NVIDIA CSS Drop-Down Menu Theme
+ *
+ * @file		default.css
+ * @name		NVIDIA
+ * @version		0.1
+ * @type		transitional
+ * @browsers	Windows: IE6+, Opera7+, Firefox1+
+ *				Mac OS: Safari2+, Firefox2+
+ *
+ * @link		http://www.lwis.net/
+ * @copyright	2008 Live Web Institute. All Rights Reserved.
+ *
+ * Module Classes: *.dir {} *.on {} *.open {} li.hover {} li.first {} li.last {}
+ * Expected directory tag - li
+ *
+ */
+/**
+ * Dual licensed under the MIT License and GNU General Public License, See License details in csslicense.txt file.
+ */
+
+/*------------------------------------------------------------------------------------------------------/
+ * @section		Base Drop-Down Styling
+ * @structure	ul (unordered list)
+ *				ul li (list item)
+ *				ul li a (links)
+ *				*(.class|:hover)
+ * @level sep	ul
+ */
+
+
+/* ----- ALL LEVELS (incl. first) */
+
+ul.dropdown {
+ font: normal 14px "Trebuchet MS", Arial, Helvetica, sans-serif; /*SISO*/
+ text-transform: uppercase;
+ /* border: 1px solid black; SISO*/
+}
+
+	ul.dropdown li {
+	 padding: 7px 0;
+	 /*background-color: #000;
+	 background-color: #BBB; */
+	 color: #fff;
+	 line-height: normal;
+	}
+
+	ul.dropdown li.hover,
+	ul.dropdown li:hover {
+	 
+	}
+
+	ul.dropdown a, /*SISO*/
+	ul.dropdown a:link,
+	ul.dropdown a:visited {
+		color: #fff;
+		text-decoration: none;
+		display : inline; /*SISO*/
+	}
+	ul.dropdown a:hover { color: #76b900; text-decoration: none; }
+	ul.dropdown a:active { color: #fff; }
+
+
+/* ----- END LEVEL */
+
+
+	/* ----- NON-FIRST LEVEL */
+
+	ul.dropdown ul {
+	left: 42px; /*SISO */
+	top: 10px; /*SISO */
+	height: 30px; /*SISO */
+	 width : 500px; /*SISO : Overide this values in style attribute */
+	 /* background-color: #333; */
+	 color: #fff;
+	 font-size: 14px; /*SISO*/
+	 text-transform: none;
+	 filter: alpha(opacity=90);
+	 -moz-opacity: .9;
+	 KhtmlOpacity: .9;
+	 opacity: .9;
+	}
+
+		ul.dropdown ul li {
+		 background-color: transparent;
+		 font-weight:bold;
+		 filter: none;
+		 display : inline; /*SISO*/
+		}
+
+		ul.dropdown ul li.hover,
+		ul.dropdown ul li:hover {
+		 background-color: transparent;
+		}
+
+		ul.dropdown ul a:link,
+		ul.dropdown ul a:visited { color: #fff; }
+		ul.dropdown ul a:hover { color: #fff; text-decoration: none; }
+		ul.dropdown ul a:active { color: #fff; }
+
+
+/* ----- END LEVEL */
+
+
+
+/*------------------------------------------------------------------------------------------------------/
+ * @section	Support Class 'dir'
+ * @level sep	ul, .class
+ */
+
+
+/* ----- ALL LEVELS (incl. first) */
+
+ul.dropdown *.dir {
+ padding-right: 12px;
+ background-image: none;
+ background-position: 100% 50%;
+ background-repeat: no-repeat;
+}
+
+/* ----- END LEVEL */
+
+
+/* Components override */
+

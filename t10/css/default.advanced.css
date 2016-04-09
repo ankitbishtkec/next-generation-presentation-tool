@@ -1,0 +1,91 @@
+@charset "UTF-8";
+
+/** 
+ * NVIDIA Advanced CSS Drop-Down Menu Theme
+ *
+ * @file		default.advanced.css
+ * @name		NVIDIA
+ * @version		0.1
+ * @type		transitional
+ * @browsers	Windows: IE5+, Opera7+, Firefox1+
+ *				Mac OS: Safari2+, Firefox2+
+ *
+ * @link		http://www.lwis.net/
+ * @copyright	2008 Live Web Institute. All Rights Reserved.
+ *
+ */
+/**
+ * Dual licensed under the MIT License and GNU General Public License, See License details in csslicense.txt file.
+ */
+@import "default.css";
+
+
+ul.dropdown li a {
+ display: block;
+ padding: 5px 0px 1px 0px;
+ /* SIOS : padding: 7px 14px; */
+}
+
+
+/* ------------- Override default */
+
+	ul.dropdown li {
+	 padding: 0;
+	}
+
+
+/* ------------- Reinitiate default: post-override activities  */
+
+	ul.dropdown li.dir {
+	 padding: 0px 1px 0px 1px;
+	}
+
+	ul.dropdown ul li.dir {
+	 padding-right: 15px;
+	}
+
+
+/* ------------- Custom */
+
+	ul.dropdown li {
+		height: 44px;
+	}
+
+	ul.dropdown ul a {
+	 padding: 0px 10px 3px 10px; /* SISO : Adjust focus ring drawn*/
+	 width: 151px; /* Especially for IE */
+	 display : inline;
+	}
+
+	ul.dropdown ul a {
+	 padding: 0px 10px 3px 10px; /* SISO : Adjust focus ring drawn*/
+	 width: 151px; /* Especially for IE */
+	 display : inline;
+	}
+	
+	ul.dropdown ul a:hover {
+	 background-color: #76b900;
+	}
+
+	ul.dropdown a.open {
+	 background-color: #2e2e2e;
+	 color: #76b900;
+	}
+
+	ul.dropdown ul a.open {
+	 background-color: #76b900;
+	 color: #fff;
+	}
+
+
+	/* CSS 2.1 */
+
+	ul.dropdown li:hover > a.dir {
+	 background-color: #2e2e2e;
+	 color: #76b900;
+	}
+
+	ul.dropdown ul li:hover > a.dir {
+	 background-color: #76b900;
+	 color: #fff;
+	}

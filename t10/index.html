@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Next Generation Presentation Tool V1.4</title>
+	<!--Author: Ankit Bisht
+		Author email: ankit.bisht.kec@gmail.com, ankit.bisht.com@gmail.com
+		Author LinkedIn profile: https://in.linkedin.com/pub/ankit-bisht/16/a6/167
+		License: Apache License 2.0
+		License URL: http://www.apache.org/licenses/LICENSE-2.0.html
+	-->
+	<meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, user-scalable=no">
+    <style type='text/css' media="screen">
+        <!-- START : CSS for Sliding Panel -->
+		h1, h2
+        {
+            padding: 0;
+            margin: 0;
+        }
+        #wrap
+        {
+            width: 830px;
+            margin: 0 auto;
+            background: #999;
+        }
+        #header
+        {
+            background: #ccc;
+            padding: 40px;
+        }
+        #content
+        {
+            height: 400px;
+            background: #f1f1f1;
+            padding: 40px;
+        }
+        .feedback-panel
+        {
+            padding: 15px;
+            width: 1125px; <!--changetheslidepanelwidth-->height:700px;background:#ffffff;border:#29216d1pxsolid;position:absolute;top:0px;left:-291px;
+		}
+        .feedback-panel a.feedback-tab
+        {
+            background: transparent url(feedbacktab.gif) no-repeat scroll 0 0;
+            display: block;
+            height: 30px;
+            left: 51px;
+            bottom: 21px;
+            position: relative;
+            float: right;
+            text-indent: -9999px;
+            width: 30px;
+            outline: none;
+        }
+         <!-- END : CSS for Sliding Panel -->
+		body
+        {
+            user-select: none;
+            -ms-user-select: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -webkit-touch-callout: none;
+            -webkit-user-drag: none;
+        }
+        ul#nav span:hover img
+        {
+            border: 1px solid orange;
+        }
+		
+        ul#nav a img
+        {
+            padding: 0px 0px 0px 0px;
+        }
+		
+		.promptdialog{
+		position:absolute; 
+		border:1px solid black; 
+		background:lightyellow; 
+		left: 600px; 
+		top: 150px; 
+		width : 280;
+		height : 120; 
+		padding: 3px 3px 3px 3px; 
+		text-indent: 5px; 
+		font: normal 11px Verdana;
+		display: none;
+		}		
+    </style>
+    <!-- CSS for dynamic menus -->
+    <link href="css/dropdown.css" media="screen" rel="stylesheet" type="text/css">
+    <link href="css/default.advanced.css" media="screen" rel="stylesheet" type="text/css">
+    <!--Config resources-->
+
+    <script src="resources/themes.xml.js"></script>
+
+    <!--JS lib files-->
+
+    <script src="libs/all.js"></script>
+	<script src="3D/libs/three.js"></script>
+	<script src="3D/libs/TrackballControls.js"></script>
+	<script src="3D/libs/draggableDiv.js"></script> 
+	
+	<!-- Image Gallery-->
+	<script src="3D/libs/Tween.js"></script> 
+	<script src="3D/libs/RequestAnimationFrame.js"></script>
+	<script src="3D/libs/Carousel.js"></script>
+	<script src="3D/libs/helvetiker_regular.typeface.js"></script>
+	<script src="3D/scripts/imageGallery.js"></script>
+	<script src="3D/scripts/signals.min.js"></script>
+	<script src="3D/scripts/Viewport.js"></script>
+	<script src="3D/scripts/UI.js"></script>
+	<script src="3D/scripts/navigation.js"></script>
+	<script src="3D/scripts/text.js"></script>
+	<script src="3D/scripts/threeDSlide.js"></script>
+		
+		<!-- Room Image Gallery-->
+	<script src="3D/scripts/roomImageGallery.js"></script> 
+	<script src="3D/scripts/navigateRoomGallery.js"></script>
+	
+	
+		<!-- load the font files -->
+
+	<script src="3D/fonts/gentilis_bold.typeface.js"></script>
+	<script src="3D/fonts/gentilis_regular.typeface.js"></script>
+	<script src="3D/fonts/optimer_bold.typeface.js"></script>
+	<script src="3D/fonts/optimer_regular.typeface.js"></script>
+	<script src="3D/fonts/helvetiker_bold.typeface.js"></script>
+	<script src="3D/fonts/helvetiker_regular.typeface.js"></script>
+	
+	
+	<script src="3D/effects/AnaglyphEffect.js"></script>
+	<script src="3D/scripts/navigation.js"></script>	
+
+	<script src="3D/scripts/3DMethods.js"></script>
+	<script src="3D/scripts/3dmenu.js"></script>
+	<script src="3D/scripts/interface3D.js"></script>
+	<script src="3D/scripts/VAIF.js"></script>
+	<script src="3D/scripts/plate3D.js"></script>
+
+	<script src="3D/scripts/ColladaLoader.js"></script>
+	<script src="3D/scripts/model3D.js"></script>
+	
+	<!----Camera animation---->
+	<script src="3D/libs/cameraAnimation.js"></script>
+
+    <script src="libs/cm.js"></script>
+	<script src="libs/scm.js"></script>
+    <script src="libs/hammer.js"></script>
+
+
+    <script src="scripts/main.js"></script>
+
+    <script src="scripts/util.js"></script>
+
+    <script src="scripts/zoom.js"></script>
+
+    <script src="scripts/rotate.js"></script>
+
+    <script src="scripts/tag-it.js"></script>
+
+    <script src="scripts/theme.js"></script>
+
+    <script src="scripts/animate.js"></script>
+
+    <script src="scripts/video.js"></script>
+
+    <script src="scripts/effect.js"></script>
+
+    <script src="scripts/menu.js"></script>
+
+    <script src="scripts/touch.js"></script>
+
+
+    <script src="scripts/loadgalaxy.js"></script>
+
+    <script src="scripts/dragNdrop.js"></script>
+
+    <script src="scripts/direction.js"></script>
+	<script src="scripts/frame.js"></script>
+	<script src="scripts/birdEyeView.js"></script>
+	<script src="scripts/addSymbol.js"></script>
+	<script src="scripts/pathcont.js"></script>
+	<script src="scripts/pers3d.js"></script>
+	<script src="scripts/audio.js"></script>
+	<script src="scripts/ImageSlideShow.js"></script>
+	<script src="scripts/save&Restore.js"></script>
+	<script src="scripts/grid.js"></script>
+	
+	<script src="scripts/threeDEdit.js"></script>
+	<script src="scripts/threeDInsertInTwoD.js"></script>
+	<script src="scripts/threeDInsertInThreeD.js"></script>
+	<script src="scripts/threeDControllersEvents.js"></script>
+	<script src="3D/libs/ColladaLoader.js"></script>
+	<script src="3D/libs/ColladaLoader.js"></script>
+    <script src="libs/dat.gui.js"></script>
+    <script>
+			function menuShowHide(evt)
+			{
+				var id = evt.target.id;
+				var target = null;
+				var imgSrc = null;
+				if(id == "verticalMenuShowHide")
+				{
+					target = document.getElementById('vertical_menu');
+					imgSrc = document.getElementById('verticalMenuShowHide');
+				}
+				else if(id == "topMenushowHide")
+				{
+					target = document.getElementById('topMenu');
+					imgSrc = document.getElementById('topMenushowHide');
+				}
+				
+				toggleHideShow(target, imgSrc);
+			}
+			
+			function toggleHideShow(target, imgSrc)
+			{
+				if(target.style.display == 'none')
+				{
+					target.style.display = 'block';
+					if(imgSrc)
+						imgSrc.src = 'resources/hide.png'
+					
+				}
+				else
+				{
+					target.style.display = 'none';
+					if(imgSrc)
+						imgSrc.src = 'resources/show.png'
+				}
+			}
+						
+			function initializeBottomMenuBar()
+			{
+				var canvasTop = getElementPosition(document.getElementById('MainHTMLCanvas')).top;
+				var positionTopForBottomMenu =  canvasTop + document.getElementById('MainHTMLCanvas').offsetHeight;
+				document.getElementById('bottomMenus').style.top = (positionTopForBottomMenu - 100) + 'px';
+			}
+			
+			function initializeAlertBar()
+			{
+				var canvas = document.getElementById('MainHTMLCanvas');
+				var alertBox = document.getElementById('alert');
+				if (canvas && alertBox)
+				{
+					var canvasPosition =  getElementPosition(canvas);
+					var alertTop = canvasPosition.top + canvas.offsetHeight/2 - 100 - alertBox.offsetHeight/2;
+					var alertLeft = canvasPosition.left + canvas.offsetWidth/2 - alertBox.offsetWidth/2;
+					alertBox.style.top = alertTop + 'px';
+					alertBox.style.left = alertLeft + 'px';
+					alertBox.style.display = 'none';
+				}
+			}
+			
+			function set3DButtonPosition()
+			{
+				var canvas = document.getElementById('MainHTMLCanvas');
+				var switchButton = document.getElementById('switchTo3d');
+				var canvasPosition =  getElementPosition(canvas);
+				var top = canvasPosition.top + canvas.offsetHeight/2  - switchButton.offsetHeight/2;
+				var left = canvasPosition.left + canvas.offsetWidth/2 - switchButton.offsetWidth/2;
+				
+				switchButton.style.display = "block";
+				switchButton.style.top = "15px";
+				switchButton.style.left = left + 'px';
+				switchButton.style.width = (80 + 'px');
+				switchButton.style.height = (70 + 'px');
+				switchButton.addEventListener('click', switchTO3D, false)
+
+			}
+			
+			function switchTO3D()
+			{
+				window.open("3D/3D.html");
+			}
+			
+			var img;
+			function menuPlayPause(evt)
+			{
+				var id = evt.target.id;
+				var target = null;
+				var imgSrc = null;
+				if(id == "CameraAnimation")
+				{
+					target = document.getElementById('CameraAnimation');
+					TogglePlayPause(true);				
+				}
+			}
+			
+			function TogglePlayPause(fromHTML)
+			{
+				img = document.getElementById('CameraAnimation');
+				if(img.getAttribute('src') == 'resources/play_overlay.png')
+					{
+						img.setAttribute('src', 'resources/pause3D.png');
+						if(fromHTML)
+							userDefinedPath(true,false,false);
+					}
+						
+					else if(img.getAttribute('src') == 'resources/pause3D.png')
+					{
+						img.setAttribute('src', 'resources/play_overlay.png');
+						if(fromHTML)
+							userDefinedPath(false,false,false);
+					}
+			}
+			
+			
+		</script>
+
+</head>
+
+<body onload="onLoad()" onresize = "initializeBottomMenuBar()">
+	 <!-- START : Canvas Area -->
+    <table id="MainHTMLCanvasAreaTable" width="100%" summary="Area containing Main Canvas and Controls">
+        <tr>
+            <td id="MainHTMLCanvasArea">
+                <canvas id="MainHTMLCanvas" height="700"></canvas>
+            </td>
+        </tr>
+    </table>
+
+	<div id="editThreeD" style="position:absolute;top:10px;
+     left:10px;width:1580px;height:710px;border: 1px solid red;display:none; z-index:1">
+	</div>
+	
+	<script>
+						var canvas = document.getElementById("MainHTMLCanvasAreaTable");																		
+							var img = document.createElement("img");
+							var inputText= "",url= "";				
+							
+							canvas.addEventListener('dragenter', function(e){								
+							}, false);
+							
+							canvas.addEventListener('dragleave', function(){								
+							}, false)
+							
+							
+							canvas.ondragover = function(e) {                                                                                                           
+								inputText = event.dataTransfer.getData("text");              
+								url = event.dataTransfer.getData("URL");
+								if(e.preventDefault && (isImage(url) ||(typeof inputText == "string" && inputText.length !=0))){
+												e.preventDefault();
+								}
+								return false;
+							};
+
+
+							img.addEventListener("load", function () {							
+							}, false);
+
+							canvas.ondrop = function(e) {
+								inputText = event.dataTransfer.getData("text");	
+								url = event.dataTransfer.getData("URL");			
+								var webImage = url.indexOf("file://", 0);
+								var webImage1 = url.indexOf("localhost", 0);
+								if(webImage == -1 && webImage1 == -1)
+								{
+									if(!getPlayMode())
+									{												
+									if(isImage(url))
+									{
+										fabric.util.loadImage(url, function(img) 
+												{
+												var oImg = new fabric.Image(img);
+												oImg.set({ 
+													left: mouseCurPos.x, 
+													top: mouseCurPos.y,
+													});												
+													mainFabricCanvas.add(oImg);
+													frameSort();
+													customRenderAll();
+												});
+									}										   
+									if(isAudio(url))
+									{									
+										addAudio(url);
+									}
+									}								
+
+									if(typeof inputText == "string")
+									event.preventDefault();
+
+									if(inputText && inputText.length!=0 && (!isImage(url)) && (!isAudio(url)))
+									{
+										var text = new fabric.Text(inputText, {
+										left: e.x,
+										top: e.y,
+										textAlign: "left",						  
+										fontSize:20,
+										strokeWidth: "1",
+										stroke: 'rgb(184,184,184)',
+										fill: 'rgba(0,0,0,0.5)'});
+										text.setOpacity("1");
+										mainFabricCanvas.add(text);
+										frameSort();
+										customRenderAll();						
+									}  
+								}					
+
+							}
+
+				</script>
+    <!-- END : Canvas Area -->
+		
+	<!-- -->
+    <!-- Start of Dynamic Menues -->
+    <!-- START : Top Menus -->
+	<div style ="position: fixed;top: 43px; left: 15px;">
+	<div style="height: 16px; width: 16px; left:0.5px" onclick="menuShowHide(event);">
+            <img id="topMenushowHide" src="resources/hide.png" style="padding: 0px 0px 0px 0px;">
+    </div>
+	<div id = "topMenu">
+	
+    <ul id="nav" class="dropdown dropdown-horizontal" onclick="handleDynamicMenuClick()">
+        <li class="dir" style="height: 32px; width: 30px;"><a>
+            <img id="insert" src="resources/I.png"></a>
+            <ul style = "left: 30px;">
+               <li>
+					<img id="shapes" src="resources/shape.png">
+					<ul class="dir"  style="width: 450px">
+						<li><span>
+							<img id="line" src="resources/line.png" draggable="true" ondragend="dragLine(event)"/></span></li>
+						<li><span>
+							<img id="rectangle" src="resources/rect.png" draggable="true" ondragend="dragRectangle(event)"/></span></li>
+						<li><span>
+							<img id="triangle" src="resources/tri.png" draggable="true" ondragend="dragTriangle(event)" /></span></li>
+						<li><span>
+							<img id="circle" src="resources/circle.png" draggable="true" ondragend="dragCircle(event)" /></span></li>
+						<li><span>
+							<img id="ellipse" src="resources/ellipse.png" draggable="true" ondragend="dragEllipse(event)"/></span></li>					
+					</ul>
+							
+				</li>
+				
+               <li>
+					<img id="threeD" src="resources/3d.png">
+					<ul class="dir"  style="width: 450px">
+						<li><span>
+							<img id="cube" src="resources/cube.png" width ="42" height ="42" /></span></li>
+						<li><span>
+							<img id="adam" src="resources/boy.png" width ="42" height ="42" /></span></li>
+						<li><span>
+							<img id="eve" src="resources/girl.png" width ="42" height ="42"   /></span></li>
+						<li><span>
+							<img id="duck" src="resources/duck.png" width ="42" height ="42" /></span></li>
+						<!--<li><span>
+							<img id="house" src="resources/house.png" width ="42" height ="42" /></span></li>-->
+						<li><span>
+							<img id="truck" src="resources/truck.png" width ="42" height ="42" /></span></li>					
+					</ul>
+							
+				</li>
+
+				<li>
+					<img id="dragonSVG" src="resources/svg.png" draggable="true" ondragend="dragSVG(event)">
+				</li>	
+					
+				<li>
+					<img id="media" src="resources/Media.png">
+						<ul class="dir"  style="width: 850px">
+							<li><span>
+								<img id = "imageMedia" src="resources/image.png" draggable="true"  ondragend="dragImage(event)" /></span></li>
+							<li><span>
+								<img id = "videoMedia" src="resources/video.png" draggable="true" ondragend="dragVideo(event)" /></span></li>
+							<li><span>
+								<img id = "audioMediaIcon" src="resources/AudioIconSmall.png" height = "18" width= "60" /></span></li>
+							<li><span>	
+							<input type="file" id="ImageVideoFileSelector"  onchange="checkType(this.files)" accept="image/*,video/*,audio/*" style="width: 80%; background-color: transparent; font-size: 12px;" multiple/></span></li>
+							 <!--onchange="drawImage()"; -->
+						</ul>
+				</li>
+				
+				<li>
+					<img id="text" src="resources/txt.png" >				
+				</li>
+				
+				<li>
+					<img id="frame" src="resources/frame.png" >
+						<ul class="dir"  style="width: 450px">
+							<li><span>
+								<img id = "FrameSVG1" src="resources/rect.png" draggable="true"  ondragend="dragFrameRect(event)"/></span></li>
+							<li><span>
+								<img id = "FrameSVG2" src="resources/circle.png" draggable="true"  ondragend="dragFrameCir(event)"/></span></li>
+							<li><span>
+								<img id = "triFrame" src="resources/tri.png" draggable="true"  ondragend="dragFrameTri(event)"/></span></li>
+							<li><span>
+								<img id = "FrameSVG3" src="resources/bracket.png" draggable="true"  ondragend="dragFrameBracket(event)"/></span></li>
+							<li><span>
+								<img id = "Frame3D" src="resources/3d.png" draggable="true"  ondragend="dragFrame3D(event)"/></span></li>	
+						</ul>
+				</li>
+				
+				<li>
+					<img id="freeDraw" src="resources/freedraw.png">	
+				</li> 
+				
+				<li class="dir" style="width: 450px;" onclick="displaySymbolPrompt(event)">
+					<img id="symbols" src="resources/symbol.png" >
+				</li>
+				
+            </ul>
+        </li>
+        <li class="dir" style="height: 32px; width: 30px;"><a>
+            <img id="examples" src="resources/E.png"></a>
+            <ul style = "left: 30px;">
+                <li><span>
+                     <img id="galaxy" src="resources/star.png" /></span></li>
+				<li><span>
+                     <img id="fakethreed" src="resources/3d.png" /></span></li>
+            </ul>
+        </li>
+    </ul>
+    <ul id="nav" class="dropdown dropdown-horizontal" onclick="handleDynamicMenuClick()">
+        <li class="dir" style="height: 32px; width: 30px;"><a>
+            <img id="SelectTheme" onchange= "applyTheme()" src="resources/T.png"></a>
+                    <ul style = "left: 30px;">
+                       <li><span>
+                            <img id = "defaultTheme" src="resources/default.png" /></span></li>
+						<li><span>					
+                        <li><span>
+                            <img id = "galaxyTheme" src="resources/galaxy.png" /></span></li>
+						<li><span>
+                            <img id = "chessTheme" src="resources/chess.png" /></span></li>
+                        <li><span>
+                            <img id = "oceanTheme" src="resources/ocean.png" /></span></li>
+						<li><span>
+                            <img id = "slateTheme" src="resources/slate.png" /></span></li>
+						<li><span>
+                            <img id = "marioTheme" src="resources/mario.png" /></span></li>                                 
+                    </ul>
+        </li>
+        <li class="dir" style="height: 32px; width: 30px;"><a>
+            <img id="path" src="resources/P.png"></a>
+				<ul style = "left: 30px;">
+                        <li><span>
+                            <img id = "StartAPath" src="resources/start.png" /></span></li>
+						<li><span>
+                            <img id = "CompletePath" src="resources/stop.png" /></span></li>
+						<li><span>
+                            <img id = "ClearPath" src="resources/clear.png" /></span></li>                    
+                    </ul>
+        </li>
+    </ul>
+	</div>
+	</div>
+    <!-- END : Top Menus -->
+	
+
+	<div id="camera_menu" style="left:15px; top: 100px; position: fixed;display:none">
+            <ul id="nav" class="dropdown dropdown-horizontal" onclick="handleDynamicMenuClick()">
+			<li class="dir" style="float: left;"><a>
+				<img id="slideShowPrevious" src="resources/previous.png" onclick="userDefinedPath(false,false,true);"></a>
+			</li>
+			<li class="dir" style="float: left;"><a>
+				<img id="CameraAnimation" src="resources/play_overlay.png" onclick="menuPlayPause(event);"></a>
+			</li>			
+			<li class="dir" style="float: left;"><a>
+				<img id="cameraslideShowNext" src="resources/next.png" onclick="userDefinedPath(false,true,false);"></a>
+			</li>
+			</ul>
+	</div>
+	
+	<div id="exitCamera" style="left:15px; top: 140px; position: fixed;display:none">
+	<ul id="nav" class="dropdown dropdown-horizontal" onclick="handleDynamicMenuClick()">	
+	<li class="dir"><a>
+        <input type="checkbox" id="anaglyph" /> Anaglyph Mode</a> 
+	</li>	
+	<li class="dir"><a>
+        <input type="checkbox" id="theme" onchange="toggleTheme(event)" /> Theme</a> 
+	</li>
+	<li class="dir" style="float: left;"><a>
+		<img id="exit3D" src="resources/exit3D.png"  width ="40" height ="40" onclick="exit3DPres();"></a>
+	</li>
+	<li class="dir" style="float: left;"><a>
+        <img id = "navigation" src="resources/navigation.png" width ="40" height ="40" onclick="togglePresentationMode(event);"/></a> 
+	</li>
+
+	</ul>
+	</div>
+	
+	
+    <!-- START : Vertical menus -->
+    <div id="DymanicMenuContainer" style="left:15px; top: 200px; position: fixed;">
+        <div style="height: 16px; width: 16px;" onclick="menuShowHide(event);">
+            <img id="verticalMenuShowHide" src="resources/hide.png" style="padding: 0px 0px 0px 0px;">
+        </div>
+        <div id="vertical_menu">
+            <ul id="nav" class="dropdown dropdown-horizontal" onclick="handleDynamicMenuClick()">
+                <li class="dir"><a>
+                    <img id="transparency" src="resources/trans.png" /></a>
+                    <ul style="width: 120px">
+                        <li><span>
+                            <input id="TransperencySlider" type="range" min="0" max="1" step="0.1" value="1"></span></li>						                     
+                    </ul>
+                </li>
+
+                <li class="dir"><a>
+                    <img id = "zoomOut" src="resources/zoomout.png" /></a> 
+					<ul style="width: 120px">
+                        <li><span>
+                           <input id="ZoomFactorSlider" type="range" min="1.1" max="2" step="0.1" value="1.1" onmouseup="setZoomFactor()"/></span></li>
+                    </ul>                     
+				</li>
+				
+				
+                <li class="dir"><a>
+                    <img id = "antiClockwise" src="resources/antiClockwise.png" /></a>
+                    <ul style="width: 120px">
+                        <li><span>
+                            <input id="RotateFactorSlider" type="range" min="1" max="100" step="1" value="10" /></span></li>
+                    </ul>
+                </li>                         
+       
+                <li class="dir"><a>
+                    <img id="effects" src="resources/effects.png" onmouseover="updateEffectMenu(this)"/></a>
+                    <ul>
+                        <li><span>
+                            <img id="Grayscale" src="resources/gscale.png" /></span></li>
+                        <li><span>
+                            <img id="Invert" src="resources/invert.png" /></span></li>
+                        <li><span>
+                            <img id="Noise" src="resources/noise.png" /></span></li>
+                        <li><span>
+                            <img id="GradientTransparency" src="resources/gradient.png" /></span></li>
+                        <li><span>
+                            <img id="Sepia" src="resources/sepia1.png" /></span></li>
+                        <li><span>
+                            <img id="Sepia2" src="resources/sepia2.png" /></span></li>
+                        <li><span>
+                            <img id="Sepia3" src="resources/sepia3.png" /></span></li>
+                    </ul>
+                </li>
+				
+				 <li class="dir"><a>
+                    <img id="strokeSlider" src="resources/stroke.png" onclick="return stroke_onclick()" /></a>
+                    <ul style="width: 355px">
+                        <li>
+                            <input id="StrokeWidth" type="range" min="1" max="100" step="1" value="2" style ="padding-top:1px;">
+                        </li>
+                         <li>
+                            &nbsp; <font size="2" color="red">Stroke Color :</font>
+                        </li>
+						<li>
+							<input id="StrokeColorSelector" type="color" value="#0000FF" />
+						<li>
+                    </ul>
+                </li>
+				
+				<li class="dir"><a>
+                    <img id="fullScreen" src="resources/fullscreen.png" onmouseover="updateEffectMenu(this)"/></a>                    
+                </li>
+                   
+            </ul>
+			
+			<ul id="nav" class="dropdown dropdown-horizontal" onclick="handleDynamicMenuClick()">
+                <li class="dir"><a>
+                    <img src="resources/ani.png" /></a>
+                    <ul>
+                        <li><span>
+                            <img id = "linearAnimation" src="resources/linear.png" /></span></li>
+                        <li><span>
+                            <img id = "rotateAnimation" src="resources/rotate.png" /></span></li>
+						<li><span>
+                            <img id = "abstractAnimationSingle" src="resources/abstract.png" /></span></li>
+						<li><span>
+                            <img id = "scaleAnimation" src="resources/scale.png" /></span></li>
+						<li>
+                            <img id = "speedfactor" src="resources/speed.png" />
+							<ul>
+								<li><span>
+								<input id="AnimationSpeed" type="range" min="1" max="100" step="1" value="10" onmouseup="updateAnimationSpeed()">
+								</span></li>
+							</ul>
+						</li>
+							</span></li>	
+						<li><span>
+                            <img id = "stopAnimation" src="resources/stop.png" /></span></li>          
+                    </ul>
+                </li>
+
+                <li class="dir"><a>
+                    <img id = "zoomIn" src="resources/zoomin.png" /></a>
+                    <ul style="width: 110px">
+                        <li><span>
+                           <input id="ZoomFactorSlider" type="range" min="1.1" max="2" step="0.1" value="1.1" onmouseup="setZoomFactor()"/></span></li>
+                    </ul>
+                </li>
+				
+                <li class="dir"><a>
+                    <img id = "clockwise" src="resources/rotate-clock.png" /></a>
+                    <ul style="width: 120px">
+                       <li><span>
+                            <input id="RotateFactorSlider" type="range" min="1" max="100" step="1" value="10" /></span></li>
+                    </ul>
+                </li>
+                
+                <li class="dir"><a>
+                    <img id="viewSize" src="resources/viewsize.png" ></a>
+                    <ul>
+                        <li>
+                            &nbsp; <font size="3" color="red">w :</font><label id="CurrentCanvasWidth">&nbsp;</label>
+                        </li>
+                        <li>
+                            <input id="CanvasWidth" type="range" min="1" max="1000" step="1" value="500"/>
+                        </li>
+                         <li>
+                            &nbsp; <font size="3" color="red">h :</font><label id="CurrentCanvasHeight">&nbsp;</label>
+                        </li>
+						<li>
+                            <input id="CanvasHeight" type="range" min="1" max="1000" step="1" value="300"/>
+                        </li>
+                    </ul>
+                </li>
+            
+                <li class="dir"><a>
+                    <img id="fillColor" src="resources/fill.png" /></a>
+                    <ul style="width: 355px">
+                        <li>
+                            <input id="FillColorSelector" type="color" value="#000000" />
+                        </li>
+                    </ul>
+                </li>	
+				<li class="dir"><a>
+                    <img id="brightness" src="resources/brightness.png" /></a>
+                    <ul style="width: 355px">
+                        <li>
+							<input id="BrightnessSlider" type="range" min="0" max="255" step="1" value="0" />
+                        </li>
+                    </ul>
+            </ul>
+			</div>
+        </div>
+    <!--End :Vertcal Menus -->
+    <!-- End of Dynamic Menues -->
+	<div style>
+	<canvas id="fpsmeter" height="60" width="110" style = "position: fixed;top: 135px;left: 10px;"></canvas>
+	</div>
+    <!-- START : Sliding Panel -->
+	<div id="slidingPanel" class="feedback-panel open" style="height: 350px; left: 0px;
+        display: none">
+        <a class="feedback-tab">Feedback</a>
+    </div>
+    <!-- END : Sliding Panel -->
+	<!-- START : Bottom Menus -->
+    <ul id="bottomMenus" class="dropdown dropdown-horizontal" onclick="handleDynamicMenuClick()" style="left: 20px; top: 600px;position: fixed;">
+        <li class="dir" style="float: left;"><a>
+            <img id="home" src="resources/home.png"></a>
+        </li>
+        <li class="dir" style="float: left;"><a>
+            <img id="playMode" src="resources/camera.png"></a>
+        </li>
+        <li class="dir" style="float: left;"><a>
+            <img id="playModeTag" src="resources/playMode.png"></a>
+        </li>
+        <li class="dir" style="float: left;"><a>
+            <img id="save" onclick="showSave(event)"; src="resources/save.png"></a>
+        </li>	
+        <li class="dir" style="float: left;"><a>
+            <img id="restore" onclick="showRestore()" src="resources/restore.png"></a>
+        </li>		
+        <li class="dir" style="float: left;"><a>
+            <img id="slideShow" src="resources/slideShow.png" onclick="startPathAnimation();"></a>
+        </li>
+        <li class="dir" style="float: left;"><a>
+            <img id="slideShowStop" src="resources/stop_ss.png" onclick="pausePathAnimation();"></a>
+        </li>	
+        <li class="dir" style="float: left;"><a>
+			<button type="button" id="slideShowNext" onclick="nextPathAnimation();">Next</button></a>
+        </li>
+        <li class="dir" style="float: left;"><a>
+			<button type="button" id="slideShowLast" onclick="lastPathAnimation();">Prev</button></a>
+        </li>		
+		<li class="dir" style="float: left;"><a>
+			<img id="more" src="resources\more.png" style="display: none;" onclick="getMoreImages();" />
+		</li>
+		<li class="dir" style="float: left;"><a>
+			<img id="imageSlideShow" src="resources\slides.png" onclick="createSlideObject();" />
+		</li>
+       <li class="dir" style="float: left;"><a>
+            <img id="StartUserDefinedAPath" src="resources/start_path.png"></a>
+        </li>
+		<li class="dir" style="float: left;"><a>
+            <img id="presentation3D" src="resources/presentation3D.png"></a>
+        </li>		
+		<li style="float: left;display:block">
+		<div id = "navigationKeys" style="position:relative;top: 6px;">
+			<img id="left" style="position:absolute; top:16px; left:0px" src="resources/left.png" alt="left" width="16" height="16" onclick="callLeft()">
+			<img id="top" style="position:absolute; top:0px; left:16px" src="resources/top.png" alt="top" width="16" height="16" onclick="callUp()">
+			<img id="right" style="position:absolute; top:16px; left:32px"  src="resources/right.png" alt="right" width="16" height="16" onclick="callRight()">
+			<img id="down" style="position:absolute; top:32px; left:16px" src="resources/bottom.png" alt="down" width="16" height="16" onclick="callDown()">
+			<img id="control-stop" style="position:absolute; top:16px; left:16px" src="resources/control-stop.png" alt="control-stop" width="16" height="16" onclick="callStop()">
+		</div>
+        </li>
+		<li class="dir" style="float: left;"><a>
+            <input id="CameraSpeed" type="range" min="1" max="100" step="1" value="10" onmouseup="updateAnimationSpeed()"></a>
+        </li>
+	</ul>
+    <!-- END : Bottom Menus -->
+	<!-- START : Exit Bird's eye view -->
+	<div id = "alert" class="promptdialog">
+		<label >Please exit Birds eye view.!!Click HOME button</label>
+	</div>
+	<div id = "alertPM" class="promptdialog">
+		<label >Please exit Play mode.!!Click Pause button</label>
+	</div>	
+
+	<!-- END : Exit Bird's eye view -->
+	<!-- START : Dialog Box -->
+	<div id ="prompt" style = "display:none; position:absolute; width:100%; background:transparent; left:800px; top:300px; width : 280px;height : 82px; padding: 3px 0px; text-indent: 5px; font: normal 11px Verdana;">
+	<select id = "fontFamilyOfText" >
+	<option value="Font Family" select>Font Family</option>
+	<option value="Arial">Arial</option>
+	<option value="Comic Sans MS">Comic Sans MS</option>
+	<option value="Courier New">Courier New</option>
+	<option value="Georgia">Georgia</option>
+	<option value="Lucida Sans Unicode">Lucida Sans Unicode</option>
+	<option value="Tahoma">Tahoma</option>
+	<option value="Times New Roman">Times New Roman</option>
+	<option value="Trebuchet MS">Trebuchet MS</option>
+	<option value="Verdana">Verdana</option>
+	</select>
+	
+	<select  id = "fontSizeOfText" >
+	<option value="Size">Size</option>
+	<option value="8">8</option>
+	<option value="9">9</option>
+	<option value="10">10</option>
+	<option value="11">11</option>
+	<option value="12" select>12</option>
+	<option value="14">14</option>
+	<option value="16">16</option>
+	<option value="18">18</option>
+	<option value="20">20</option>
+	<option value="40">40</option>
+	<option value="80">80</option>
+	</select>
+	
+	<input  id = "fontColorOfText" type="color" value="#000000" style = "width: 25px;height: 15px;top: 15px;padding: 0px 0px;border: 0px inset;">
+
+	<a href="#">
+	<span id = "closeButton" style = "position:absolute;right:3px;width:15px;background-image:url(resources/close.jpg);background-repeat: no-repeat;">&nbsp;</span>
+	</a><b>
+	<textarea id ="inputText" rows="3" cols="30" style ="border: 1px solid black; color: black;"></textarea>
+	</div>
+	<!-- END : Dialog Box -->
+		<!-- START : Path Slide bar -->
+	<div id = "slideBarContainer">
+		<div  id="slideBar" style="left:1400px; top:25px;height:0px;overflow-y:auto;position:absolute;display:none;">
+		<table  id="myTable"  style="float:right;background-color: silver;" onclick="getPathIndex(event);">
+		<tr>
+		</tr>
+		</table>
+		</div>
+	</div>
+	<!-- END : Path Slide bar -->
+	<!-- START : Symbol Box -->
+	
+	<div onselectstart="return false;" id="Symbolprompt" style="display: none; position: absolute; border: 0px solid black; width: 660px; background-color: transparent; left: 0px; top: 312px; height: 600px; padding: 3px 10px; text-indent: 5px; font-style: normal; font-variant: normal; font-weight: normal; font-size: 11px; line-height: normal; font-family: Verdana; background-position: initial initial; background-repeat: initial initial; ">
+	<a href="#">
+	<span id="closeButton" style="display: block; position:absolute;right:3px;width:15px;background-image:url(resources/close.jpg);background-repeat: no-repeat;" onclick="hideSymbolPrompt(event)">&nbsp;</span>
+	</a>
+	<table id="Symbolprompt" style="width: 650px; height: 600px;" border ="1" rules="all" >
+	<tr>
+	 <td align="center" width ="80" height ="80"><img id = "plus_64" src="resources/plus_64.png" onclick="handleSymbolClick(event)" width ="50" height ="50"  draggable="true"  ondragend="dragSymbol(event,id)" style="padding: 3px 5px;" onmouseover="applyBorder(this)" onmouseout="removeBorder(this)"  /></td>
+     <td align="center" width ="80" height ="80"><img id = "monitor_64" src="resources/monitor_64.png" onclick="handleSymbolClick(event)" width ="50" height ="50" draggable="true"  ondragend="dragSymbol(event,id)" style="padding: 3px 5px;" onmouseover="applyBorder(this)" onmouseout="removeBorder(this)" /></td>
+     <td align="center" width ="80" height ="80"><img id = "wallet_64" src="resources/wallet_64.png" onclick="handleSymbolClick(event)" width ="50" height ="50"  draggable="true"  ondragend="dragSymbol(event,id)" style="padding: 3px 5px;" onmouseover="applyBorder(this)" onmouseout="removeBorder(this)" /></td>                                                 
+	 <td align="center" width ="80" height ="80"><img id = "address_64" src="resources/address_64.png" onclick="handleSymbolClick(event)" width ="50" height ="50"  draggable="true"  ondragend="dragSymbol(event,id)" style="padding: 3px 5px;" onmouseover="applyBorder(this)" onmouseout="removeBorder(this)" /></td>
+	 <td align="center" width ="80" height ="80"><img id = "calendar_64" src="resources/calendar_64.png" onclick="handleSymbolClick(event)" width ="50" height ="50"  draggable="true"  ondragend="dragSymbol(event,id)" style="padding: 3px 5px;" onmouseover="applyBorder(this)" onmouseout="removeBorder(this)" /></td>                                                 
+	 <td align="center" width ="80" height ="80"><img id = "letter_64" src="resources/letter_64.png" onclick="handleSymbolClick(event)" width ="50" height ="50"  draggable="true"  ondragend="dragSymbol(event,id)" style="padding: 3px 5px;" onmouseover="applyBorder(this)" onmouseout="removeBorder(this)" /></td>
+	 <td align="center" width ="80" height ="80"><img id = "clipboard_64" src="resources/clipboard_64.png" onclick="handleSymbolClick(event)" width ="50" height ="50"  draggable="true"  ondragend="dragSymbol(event,id)" style="padding: 3px 5px;" onmouseover="applyBorder(this)" onmouseout="removeBorder(this)" /></td>
+	 </tr>
+	 <tr>
+	 <td align="center" width ="80" height ="80"><img id = "up_64" src="resources/up_64.png" onclick="handleSymbolClick(event)"  width ="50" height ="50" draggable="true"  ondragend="dragSymbol(event,id)" style="padding: 3px 5px;" onmouseover="applyBorder(this)" onmouseout="removeBorder(this)"  /></td>
+	 <td align="center" width ="80" height ="80"><img id = "down_64" src="resources/down_64.png" onclick="handleSymbolClick(event)"  width ="50" height ="50" draggable="true"  ondragend="dragSymbol(event,id)" style="padding: 3px 5px;" onmouseover="applyBorder(this)" onmouseout="removeBorder(this)"  /></td>
+	 <td align="center" width ="80" height ="80"><img id = "left_64" src="resources/left_64.png" onclick="handleSymbolClick(event)"  width ="50" height ="50" draggable="true"  ondragend="dragSymbol(event,id)" style="padding: 3px 5px;" onmouseover="applyBorder(this)" onmouseout="removeBorder(this)"  /></td>
+	 <td align="center" width ="80" height ="80"><img id = "right_64" src="resources/right_64.png" onclick="handleSymbolClick(event)"  width ="50" height ="50" draggable="true"  ondragend="dragSymbol(event,id)" style="padding: 3px 5px;" onmouseover="applyBorder(this)" onmouseout="removeBorder(this)"  /></td>
+	 <td align="center" width ="80" height ="80"><img id = "label_64" src="resources/label_64.png" onclick="handleSymbolClick(event)" width ="50" height ="50"  draggable="true"  ondragend="dragSymbol(event,id)" style="padding: 3px 5px;" onmouseover="applyBorder(this)" onmouseout="removeBorder(this)" /></td>                                                 
+	 <td align="center" width ="80" height ="80"><img id = "gear_64" src="resources/gear_64.png" onclick="handleSymbolClick(event)" width ="50" height ="50"  draggable="true"  ondragend="dragSymbol(event,id)" style="padding: 3px 5px;" onmouseover="applyBorder(this)" onmouseout="removeBorder(this)" /></td>
+	 <td align="center" width ="80" height ="80"><img id = "shield_64" src="resources/shield_64.png" onclick="handleSymbolClick(event)" width ="50" height ="50"  draggable="true"  ondragend="dragSymbol(event,id)" style="padding: 3px 5px;" onmouseover="applyBorder(this)" onmouseout="removeBorder(this)" /></td>
+	 </tr>
+	 <tr>
+	 <td align="center" width ="80" height ="80"><img id = "present_64" src="resources/present_64.png" onclick="handleSymbolClick(event)" width ="50" height ="50"   draggable="true"  ondragend="dragSymbol(event,id)" style="padding: 3px 5px;" onmouseover="applyBorder(this)" onmouseout="removeBorder(this)"  /></td>
+	 <td align="center" width ="80" height ="80"><img id = "tick_64" src="resources/tick_64.png" onclick="handleSymbolClick(event)" width ="50" height ="50"   draggable="true"  ondragend="dragSymbol(event,id)" style="padding: 3px 5px;" onmouseover="applyBorder(this)" onmouseout="removeBorder(this)"  /></td>
+	 <td align="center" width ="80" height ="80"><img id = "pencil_64" src="resources/pencil_64.png" onclick="handleSymbolClick(event)" width ="50" height ="50"   draggable="true"  ondragend="dragSymbol(event,id)" style="padding: 3px 5px;" onmouseover="applyBorder(this)" onmouseout="removeBorder(this)"  /></td>
+	 <td align="center" width ="80" height ="80"><img id = "print_64" src="resources/print_64.png" onclick="handleSymbolClick(event)" width ="50" height ="50"   draggable="true"  ondragend="dragSymbol(event,id)" style="padding: 3px 5px;" onmouseover="applyBorder(this)" onmouseout="removeBorder(this)"  /></td>
+	 <td align="center" width ="80" height ="80"><img id = "delete_64" src="resources/delete_64.png" onclick="handleSymbolClick(event)" width ="50" height ="50"  draggable="true"  ondragend="dragSymbol(event,id)" style="padding: 3px 5px;" onmouseover="applyBorder(this)" onmouseout="removeBorder(this)" /></td>                                                 
+	 <td align="center" width ="80" height ="80"><img id = "statistics_64" src="resources/statistics_64.png" onclick="handleSymbolClick(event)" width ="50" height ="50"  draggable="true"  ondragend="dragSymbol(event,id)" style="padding: 3px 5px;" onmouseover="applyBorder(this)" onmouseout="removeBorder(this)" /></td>                                                 
+	 <td align="center" width ="80" height ="80"><img id = "folder_64" src="resources/folder_64.png" onclick="handleSymbolClick(event)" width ="50" height ="50"  draggable="true"  ondragend="dragSymbol(event,id)" style="padding: 3px 5px;" onmouseover="applyBorder(this)" onmouseout="removeBorder(this)" /></td>
+	 </tr>
+	 <tr>
+	 <td align="center" width ="80" height ="80"><img id = "help_64" src="resources/help_64.png" onclick="handleSymbolClick(event)" width ="50" height ="50"   draggable="true"  ondragend="dragSymbol(event,id)" style="padding: 3px 5px;" onmouseover="applyBorder(this)" onmouseout="removeBorder(this)"  /></td>
+	 <td align="center" width ="80" height ="80"><img id = "globe_64" src="resources/globe_64.png" onclick="handleSymbolClick(event)" width ="50" height ="50"   draggable="true"  ondragend="dragSymbol(event,id)" style="padding: 3px 5px;" onmouseover="applyBorder(this)" onmouseout="removeBorder(this)"  /></td>
+	 <td align="center" width ="80" height ="80"><img id = "home_64" src="resources/home_64.png" onclick="handleSymbolClick(event)" width ="50" height ="50"   draggable="true"  ondragend="dragSymbol(event,id)" style="padding: 3px 5px;" onmouseover="applyBorder(this)" onmouseout="removeBorder(this)"  /></td>
+	 <td align="center" width ="80" height ="80"><img id = "flag_64" src="resources/flag_64.png" onclick="handleSymbolClick(event)" width ="50" height ="50"  draggable="true"  ondragend="dragSymbol(event,id)" style="padding: 3px 5px;" onmouseover="applyBorder(this)" onmouseout="removeBorder(this)"  /></td>
+	 <td align="center" width ="80" height ="80"><img id = "clock_64" src="resources/clock_64.png" onclick="handleSymbolClick(event)" width ="50" height ="50"   draggable="true"  ondragend="dragSymbol(event,id)" style="padding: 3px 5px;" onmouseover="applyBorder(this)" onmouseout="removeBorder(this)"  /></td>
+	 <td align="center" width ="80" height ="80"><img id = "block_64" src="resources/block_64.png" onclick="handleSymbolClick(event)" width ="50" height ="50"  draggable="true"  ondragend="dragSymbol(event,id)" style="padding: 3px 5px;" onmouseover="applyBorder(this)" onmouseout="removeBorder(this)" /></td>                                                 
+	 <td align="center" width ="80" height ="80"><img id = "heart_64" src="resources/heart_64.png" onclick="handleSymbolClick(event)" width ="50" height ="50"  draggable="true"  ondragend="dragSymbol(event,id)" style="padding: 3px 5px;" onmouseover="applyBorder(this)" onmouseout="removeBorder(this)" /></td>
+	 </tr>
+	 <tr>
+	 <td align="center" width ="80" height ="80"><img id = "key_64" src="resources/key_64.png" onclick="handleSymbolClick(event)" width ="50" height ="50"   draggable="true"  ondragend="dragSymbol(event,id)" style="padding: 3px 5px;" onmouseover="applyBorder(this)" onmouseout="removeBorder(this)"  /></td>
+	 <td align="center" width ="80" height ="80"><img id = "diagram_64" src="resources/diagram_64.png" onclick="handleSymbolClick(event)" width ="50" height ="50"   draggable="true"  ondragend="dragSymbol(event,id)" style="padding: 3px 5px;" onmouseover="applyBorder(this)" onmouseout="removeBorder(this)"  /></td>
+	 <td align="center" width ="80" height ="80"><img id = "calendar_64" src="resources/calendar_64.png" onclick="handleSymbolClick(event)" width ="50" height ="50"   draggable="true"  ondragend="dragSymbol(event,id)" style="padding: 3px 5px;" onmouseover="applyBorder(this)" onmouseout="removeBorder(this)"  /></td>
+	 <td align="center" width ="80" height ="80"><img id = "save_64" src="resources/save_64.png" onclick="handleSymbolClick(event)" width ="50" height ="50"   draggable="true"  ondragend="dragSymbol(event,id)" style="padding: 3px 5px;" onmouseover="applyBorder(this)" onmouseout="removeBorder(this)"  /></td>
+	 <td align="center" width ="80" height ="80"><img id = "trash_64" src="resources/trash_64.png" onclick="handleSymbolClick(event)" width ="50" height ="50"   draggable="true"  ondragend="dragSymbol(event,id)" style="padding: 3px 5px;" onmouseover="applyBorder(this)" onmouseout="removeBorder(this)"  /></td>
+	 <td align="center" width ="80" height ="80"><img id = "info_64" src="resources/info_64.png" onclick="handleSymbolClick(event)" width ="50" height ="50"  draggable="true"  ondragend="dragSymbol(event,id)" style="padding: 3px 5px;" onmouseover="applyBorder(this)" onmouseout="removeBorder(this)" /></td>                                                 
+	 <td align="center" width ="80" height ="80"><img id = "stop_64" src="resources/stop_64.png" onclick="handleSymbolClick(event)" width ="50" height ="50"  draggable="true"  ondragend="dragSymbol(event,id)" style="padding: 3px 5px;" onmouseover="applyBorder(this)" onmouseout="removeBorder(this)" /></td>
+	 </tr>
+	 <tr>
+	 <td align="center" width ="80" height ="80"><img id = "buy_64" src="resources/buy_64.png" onclick="handleSymbolClick(event)" width ="50" height ="50"   draggable="true"  ondragend="dragSymbol(event,id)" style="padding: 3px 5px;" onmouseover="applyBorder(this)" onmouseout="removeBorder(this)"  /></td>
+	 <td align="center" width ="80" height ="80"><img id = "bookmark_64" src="resources/bookmark_64.png" onclick="handleSymbolClick(event)" width ="50" height ="50"   draggable="true"  ondragend="dragSymbol(event,id)" style="padding: 3px 5px;" onmouseover="applyBorder(this)" onmouseout="removeBorder(this)"  /></td>
+	 <td align="center" width ="80" height ="80"><img id = "bubble_64" src="resources/bubble_64.png" onclick="handleSymbolClick(event)" width ="50" height ="50"   draggable="true"  ondragend="dragSymbol(event,id)" style="padding: 3px 5px;" onmouseover="applyBorder(this)" onmouseout="removeBorder(this)"  /></td>
+	 <td align="center" width ="80" height ="80"><img id = "briefcase_64" src="resources/briefcase_64.png" onclick="handleSymbolClick(event)" width ="50" height ="50"   draggable="true"  ondragend="dragSymbol(event,id)" style="padding: 3px 5px;" onmouseover="applyBorder(this)" onmouseout="removeBorder(this)"  /></td>
+	 <td align="center" width ="80" height ="80"><img id = "document_64" src="resources/document_64.png" onclick="handleSymbolClick(event)" width ="50" height ="50"   draggable="true"  ondragend="dragSymbol(event,id)" style="padding: 3px 5px;" onmouseover="applyBorder(this)" onmouseout="removeBorder(this)"  /></td>
+	 <td align="center" width ="80" height ="80"><img id = "user_64" src="resources/user_64.png" onclick="handleSymbolClick(event)" width ="50" height ="50"   draggable="true"  ondragend="dragSymbol(event,id)" style="padding: 3px 5px;" onmouseover="applyBorder(this)" onmouseout="removeBorder(this)"  /></td>
+	 <td align="center" width ="80" height ="80"><img id = "search_64" src="resources/search_64.png" onclick="handleSymbolClick(event)" width ="50" height ="50"  draggable="true"  ondragend="dragSymbol(event,id)" style="padding: 3px 5px;" onmouseover="applyBorder(this)" onmouseout="removeBorder(this)" /></td>
+	 </tr>
+	</table>
+	</div>
+	
+	<!-- END : Symbol Box -->
+	
+	<div id="saveRestore" style="display: none; position: absolute; border: 1px solid black; width: 230px; background-color: transparent; left: 0px; top: 412px; height: 50px; padding: 3px 10px; text-indent: 5px; font-style: normal; font-variant: normal; font-weight: normal; font-size: 11px; line-height: normal; font-family: Verdana; background-position: initial initial; background-repeat: initial initial; ">
+	<a href="#">
+	<span id="closeButton" style="display: block; position:absolute;right:3px;width:15px;background-image:url(resources/close.jpg);background-repeat: no-repeat;" onclick="hideForm()">&nbsp;</span>
+	</a>
+	<form method="POST" action="php/download.php" onsubmit="return saveContent();">
+	<input id="savefile" type="text" value="Please Enter the Filename" name="fileName" style="display: none;"/> 
+	<input id="json" type="text" name="json" hidden="true" style="display: none;" />
+	<input id="saveform" type="submit" value="Save" name="submitwrite" style="display: none;"/>
+	<input id="recid" type="text" name="restorefileName" style="display: none;"/><br/>
+	<input id="jsonrec" type="text" name="jsonrec" hidden="true" style="display: none;"/><br/>
+	<input type="file" id="restoreWrite" name="restorWrite"; onchange="loadXMLDoc()" style="display: none; width: 80%; background-color: transparent; font-size: 12px;"/>
+ <!-- <button type="button" name="restoreWrite" onclick="loadXMLDoc()">restore Content</button> -->
+<!-- <input type="submit" value="Restore" name="restoreWrite"/> -->
+</form>
+	</div>
+	
+    <!--Dummy resources-->
+    <div style="width: 100%; display: none">
+        <input type="file" id="ImageVideoFileSelector" accept="image/*,video/*" style="width: 80%;
+            background-color: transparent; font-size: 10px;"><!-- DrawInage() read value of this element-->
+        <textarea id="SVGInput" style="width: 96%; font-size: 12px;">Enter Your SVG Here</textarea><br />
+        <input type="checkbox" id="LoopVideo" checked />
+    </div>
+    <img id="SampleImage1" src="resources\sample1.png" style="display: none;" />
+    <img id="SampleImage2" src="resources\sample2.png" style="display: none;" />
+    <img id="one" src="resources\one.png" style="display: none;" />
+    <img id="two" src="resources\two.png" style="display: none;" />
+	<img id="three" src="resources\three.png" style="display: none;" />
+    <img id="four" src="resources\four.png" style="display: none;" />
+	<img id="five" src="resources\five.png" style="display: none;" />
+    <img id="six" src="resources\six.png" style="display: none;" />
+	<img id="seven" src="resources\seven.png" style="display: none;" />
+    <img id="eight" src="resources\eight.png" style="display: none;" />
+	<img id="nine" src="resources\nine.png" style="display: none;" />
+	<img id="ten" src="resources\ten.png" style="display: none;" />
+	<img id="eleven" src="resources\eleven.png" style="display: none;" />
+	<img id="twelve" src="resources\twelve.png" style="display: none;" />
+	<img id="thirteen" src="resources\thirteen.png" style="display: none;" />
+	<img id="fourteen" src="resources\fourteen.png" style="display: none;" />
+	<img id="fifteen" src="resources\fifteen.png" style="display: none;" />
+	<img id="sixteen" src="resources\sixteen.png" style="display: none;" />
+	<img id="seventeen" src="resources\seventeen.png" style="display: none;" />
+	<img id="eighteen" src="resources\eighteen.png" style="display: none;" />
+	<img id="nineteen" src="resources\nineteen.png" style="display: none;" />
+	<img id="twenty" src="resources\twenty.png" style="display: none;" />
+	<img id="audioIcon" src="resources\AudioIcon.png" style="display: none;" />
+	<!-- switch to 3D -->
+	<img id="switchTo3d" src="resources\switchTo3D.png" align='center' style="display: none;position:absolute;cursor:pointer" />
+	<!-- -->
+	
+	<!-- Themes -->
+    <img id="BackImage0" src="resources\0.jpg" style="display: none;" />
+    <img id="BackImage1" src="resources\1.jpg" style="display: none;" />
+    <img id="BackImage2" src="resources\2.jpg" style="display: none;" />
+    <img id="BackImage3" src="resources\3.jpg" style="display: none;" />
+    <img id="white" src="resources\white.jpg" style="display: none;" />
+    <img id="BackImage5" src="resources\5.jpg" style="display: none;" />
+    <img id="starimage1" src="resources\star1.png" style="display: none;" />
+    <img id="starimage2" src="resources\star2.png" style="display: none;" />
+    <img id="starimage3" src="resources\star3.png" style="display: none;" />
+    <img id="starimage4" src="resources\star4.png" style="display: none;" />
+    <img id="starimage5" src="resources\star5.png" style="display: none;" />
+    <img id="3DCube" src="resources\3DCube.png" style="display: none;" />
+    <img id="3DBoy" src="resources\3DBoy.png" style="display: none;" />
+    <img id="3DDuck" src="resources\3DDuck.png" style="display: none;" />
+    <img id="3DGirl" src="resources\3DGirl.png" style="display: none;" />
+    <img id="3DTruck" src="resources\3DTruck.png" style="display: none;" />
+    <img id="3DHouse" src="resources\3DHouse.png" style="display: none;" />
+    <div id="Videos" style="display: none;">
+    </div>
+    <!--End of Dummy resources-->
+	<!--table path side bar-->
+	
+</body>
+</html>

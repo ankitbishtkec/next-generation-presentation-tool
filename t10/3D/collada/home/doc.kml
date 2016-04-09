@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2">
+
+  <Folder>
+    <name>dom</name>
+    <description>Created with &lt;a href="http://sketchup.google.com"&gt;Google SketchUp&lt;/a&gt;</description>
+    <visibility>1</visibility>
+    <LookAt>
+      <heading>320.5913431956</heading>
+      <tilt>83.76300125787</tilt>
+      <latitude>50.2244006008</latitude>
+      <longitude>19.25506739282</longitude>
+      <range>20.43407860198</range>
+      <altitude>5.20196533607</altitude>
+    </LookAt>
+    <Folder>
+      <name>Tour</name>
+      <Placemark>
+        <name>Scene 1</name>
+        <visibility>1</visibility>
+        <LookAt>
+          <heading>320.5913431956</heading>
+          <tilt>83.76300125787</tilt>
+          <latitude>50.2244006008</latitude>
+          <longitude>19.25506739282</longitude>
+          <range>20.43407860198</range>
+          <altitude>5.20196533607</altitude>
+        </LookAt>
+      </Placemark>
+    </Folder>
+    <Placemark>
+      <name>Model</name>
+      <description></description>
+      <Style id="default"/>
+      <Model>
+        <altitudeMode>relativeToGround</altitudeMode>
+        <Location>
+          <latitude>50.224427</latitude>
+          <longitude>19.255045</longitude>
+          <altitude>0</altitude>
+        </Location>
+        <Orientation>
+          <heading>358.6585703045</heading>
+          <tilt>0</tilt>
+          <roll>0</roll>
+        </Orientation>
+        <Scale>
+          <x>1</x>
+          <y>1</y>
+          <z>1</z>
+        </Scale>
+        <Link>
+          <href>models/untitled.dae</href>
+        </Link>
+      </Model>
+    </Placemark>
+  </Folder>
+
+</kml>

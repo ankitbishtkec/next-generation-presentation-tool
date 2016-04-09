@@ -1,0 +1,68 @@
+var themesConfig ="\
+<?xml version=\"1.0\"?>\
+<themes>\
+	<theme>\
+<id>defaultTheme</id>\
+		<transperency>1</transperency>\
+		<font-size>20</font-size>\
+		<fill-color>#00FF00</fill-color>\
+		<stroke-color>#FF0000</stroke-color>\
+		<stroke-width>2</stroke-width>\
+		<backimage>white</backimage>\
+	</theme>\
+	<theme>\
+		<id>galaxyTheme</id>\
+		<transperency>1</transperency>\
+		<font-size>20</font-size>\
+		<fill-color>#FFFFFF</fill-color>\
+		<stroke-color>#33FF33</stroke-color>\
+		<stroke-width>2</stroke-width>\
+		<backimage>BackImage0</backimage>\
+	</theme>\
+	<theme>\
+		<id>oceanTheme</id>\
+		<transperency>0.9</transperency>\
+		<font-size>30</font-size>\
+		<fill-color>#FF0000</fill-color>\
+		<stroke-color>#00FF00</stroke-color>\
+		<stroke-width>5</stroke-width>\
+		<backimage>BackImage1</backimage>\
+	</theme>\
+	<theme>\
+		<id>slateTheme</id>\
+		<transperency>0.8</transperency>\
+		<font-size>40</font-size>\
+		<fill-color>#00FF00</fill-color>\
+		<stroke-color>#FF0000</stroke-color>\
+		<stroke-width>7</stroke-width>\
+		<backimage>BackImage2</backimage>\
+	</theme>\
+	<theme>\
+		<id>marioTheme</id>\
+		<transperency>0.5</transperency>\
+		<font-size>50</font-size>\
+		<fill-color>#0000FF</fill-color>\
+		<stroke-color>#00FF00</stroke-color>\
+		<stroke-width>9</stroke-width>\
+		<backimage>BackImage3</backimage>\
+	</theme>\
+	<theme>\
+		<id>Theme 1</id>\
+		<transperency>0.4</transperency>\
+		<font-size>60</font-size>\
+		<fill-color>#FFFF00</fill-color>\
+		<stroke-color>#FF00FF</stroke-color>\
+		<stroke-width>11</stroke-width>\
+		<backimage>BackImage4</backimage>\
+	</theme>\
+	<theme>\
+		<id>chessTheme</id>\
+		<transperency>0.5</transperency>\
+		<font-size>70</font-size>\
+		<fill-color>#00FFFF</fill-color>\
+		<stroke-color>#FFFF00</stroke-color>\
+		<stroke-width>15</stroke-width>\
+		<backimage>BackImage5</backimage>\
+	</theme>\
+</themes>\
+";
