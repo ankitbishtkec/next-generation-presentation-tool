@@ -3,6 +3,9 @@ A clone of prezi.com which implements advanced presentation features like infini
 
 More features can be seen in demo.
 
+# TODO:
+Make it collaborative with real time updates using Node.js, RabbitMQ and maybe Redis- each change made by a user is shared to all the other users working on same presentation like Google docs.
+
 # Demo video:
 1- Features demo part 1/2: Next generation presentation tool  https://youtu.be/elYMBa1PBwM?list=PLzq2YS2diyEHCiq2fdswTf7NfXzfUDCsk .
 
